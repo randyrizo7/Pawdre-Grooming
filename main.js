@@ -17,15 +17,13 @@ document.querySelectorAll('.drawer-link').forEach(a => a.addEventListener('click
 // =====================
 // BOTTOM NAV ACTIVE STATE
 // =====================
-const snapContainer = document.getElementById('snapContainer');
-const sections      = document.querySelectorAll('section[id]');
-const bnavLinks     = document.querySelectorAll('.bnav-link');
+const sections  = document.querySelectorAll('section[id]');
+const bnavLinks = document.querySelectorAll('.bnav-link');
 
 function updateBottomNav() {
   let current = 'hero';
-  const scrollTop = snapContainer ? snapContainer.scrollTop : window.scrollY;
   sections.forEach(s => {
-    if (scrollTop >= s.offsetTop - 100) current = s.id;
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
   });
   bnavLinks.forEach(a => {
     const href   = a.getAttribute('href').replace('#', '');
@@ -34,18 +32,18 @@ function updateBottomNav() {
   });
 }
 
-if (snapContainer) snapContainer.addEventListener('scroll', updateBottomNav);
 window.addEventListener('scroll', updateBottomNav);
 
 // =====================
-// SNAP SCROLL — bottom nav clicks on mobile
+// BOTTOM NAV CLICKS
 // =====================
 bnavLinks.forEach(link => {
   link.addEventListener('click', e => {
-    const target = document.querySelector(link.getAttribute('href'));
-    if (snapContainer && target && window.innerWidth <= 768) {
+    const href = link.getAttribute('href');
+    if (href.startsWith('#')) {
       e.preventDefault();
-      snapContainer.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
   });
 });

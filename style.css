@@ -167,14 +167,14 @@ footer p{font-size:0.77rem;color:var(--muted);}
 
 /* MOBILE */
 @media(max-width:768px){
-  body{overflow:hidden;height:100vh;}
+  body{overflow-x:hidden;overflow-y:auto;}
   .desk-nav{display:none;}
   .hamburger{display:flex;}
   .hero-pills{display:none;}
   body>footer{display:none;}
 
-  .snap-container{height:calc(100vh - 60px - var(--bnav));overflow-y:scroll;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;}
-  .snap-container section{scroll-snap-align:start;height:calc(100vh - 60px - var(--bnav));overflow-y:auto;display:flex;flex-direction:column;justify-content:center;padding:2rem 1.25rem;}
+.snap-container{overflow-y:auto;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;padding-bottom:var(--bnav);}
+.snap-container section{display:flex;flex-direction:column;justify-content:center;padding:2rem 1.25rem;}
 
   #hero{min-height:unset;padding:2.5rem 1.25rem;}
   .hero-h1{font-size:clamp(2.8rem,12vw,4.5rem);}
